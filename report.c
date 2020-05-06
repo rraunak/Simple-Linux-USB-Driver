@@ -92,6 +92,7 @@ static struct usb_driver sample_driver = {
 	.disconnect	= sample_disconnect,
 };
 
+const struct usb_device_id *id_table;
 
 module_init(sample_init);
 module_exit(sample_exit);
