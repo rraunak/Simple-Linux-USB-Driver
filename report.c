@@ -143,6 +143,17 @@ unsigned char *setup_packet
 	void *context,	
 	);
 
+ void usb_fill_int_urb (
+	struct urb *urb,
+	struct usb_device *dev,
+	unsigned int pipe,
+	void *transfer_buffer,
+	int buffer_length,
+	usb_complete_t complete,
+	void *context,	
+	);
+
+
 
 module_init(sample_init);
 module_exit(sample_exit);
