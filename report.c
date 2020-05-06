@@ -65,6 +65,7 @@ if(ret)
 	usb_set_interface(interface, NULL);
 }
 
+static inline void usb_set_intfdata(struct usb_interface *intf, void *data);
 
 module_init(sample_init);
 module_exit(sample_exit);
