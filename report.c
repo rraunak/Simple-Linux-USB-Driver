@@ -42,6 +42,14 @@ int usb_control_msg(struct usb_device *dev, unsigned int pipe, __u8 request, __u
 
 int usb_bulk_msg(struct usb_device *usb_dev, unsigned int pipe, void *data, int len, int *actual_length, int timeout);
 
+int ret;
+ret = usb_submit_urb(urb, GFP_KERNEL);
+if(ret)
+{
+	printk(“urb submission unsuccessful\n”);
+}
+
+
 module_init(sample_init);
 module_exit(sample_exit);
 
