@@ -51,6 +51,7 @@ if(ret)
 
 usb_fill_bulk_urb(urb,dev->udev,usb_sndbulkpipe(dev->udev,dev->bulk_out_endpointAddr), buf, count, write_bulk_callback, dev);
 
+copy_from_user(Buffer, user_buffer, count);
 
 module_init(sample_init);
 module_exit(sample_exit);
