@@ -49,6 +49,8 @@ if(ret)
 	printk(“urb submission unsuccessful\n”);
 }
 
+usb_fill_bulk_urb(urb,dev->udev,usb_sndbulkpipe(dev->udev,dev->bulk_out_endpointAddr), buf, count, write_bulk_callback, dev);
+
 
 module_init(sample_init);
 module_exit(sample_exit);
