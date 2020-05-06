@@ -107,6 +107,8 @@ void (*usb_complete_t) (
 
 urb->status == 0
 
+return -EINVAL;
+	
 module_init(sample_init);
 module_exit(sample_exit);
 
