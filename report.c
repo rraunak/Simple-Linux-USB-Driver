@@ -164,7 +164,7 @@ unsigned char *setup_packet
 	int interval	
 	);
 
-
+void usb_free_urb(struct urb *urb)
 
 module_init(sample_init);
 module_exit(sample_exit);
