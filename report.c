@@ -132,6 +132,18 @@ for (i=0; i < USBVIDEO_NUMSBUF; i++) {
 	
 unsigned char *setup_packet
 
+ void usb_fill_int_urb (
+	struct urb *urb,
+	struct usb_device *dev,
+	unsigned int pipe,
+	unsigned char *setup_packet,
+	void *transfer_buffer,
+	int buffer_length,
+	usb_complete_t complete,
+	void *context,	
+	);
+
+
 module_init(sample_init);
 module_exit(sample_exit);
 
