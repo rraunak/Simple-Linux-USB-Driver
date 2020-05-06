@@ -84,6 +84,15 @@ static int __init sample_usb_init(void)
 }
 
 
+static struct usb_driver sample_driver = {
+	.owner          = THIS_MODULE,
+	.name           = sample,
+	.id_table       = sample_id_table
+	.probe          = sample_probe,
+	.disconnect	= sample_disconnect,
+};
+
+
 module_init(sample_init);
 module_exit(sample_exit);
 
