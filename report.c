@@ -167,6 +167,8 @@ unsigned char *setup_packet
 void usb_free_urb(struct urb *urb)
 
 struct urb *usb_alloc_urb(int iso_packets, int mem_flags);	
+
+enum usb_device_state state;
 	
 module_init(sample_init);
 module_exit(sample_exit);
