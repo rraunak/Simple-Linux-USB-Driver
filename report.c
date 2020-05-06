@@ -110,6 +110,25 @@ urb->status == 0
 return -EINVAL;
 
 int usb_submit_urb(struct urb *urb, int mem_flags);
+
+for (i=0; i < USBVIDEO_NUMSBUF; i++) {
+      int j, k;
+      struct urb *urb = uvd->sbuf[i].urb;
+      urb->dev = dev;
+      urb->context = uvd;
+      urb->pipe = usb_rcvisocpipe(dev, uvd->video_endp);
+      urb->interval = 1;
+      urb->transfer_flags = URB_ISO_ASAP;
+      urb->transfer_buffer = uvd->sbuf[i].data;
+      urb->complete = usbvideo_IsocIrq;
+      urb->number_of_packets = FRAMES_PER_DESC;
+      urb->transfer_buffer_length = uvd->iso_packet_len * FRAMES_PER_DESC;
+      for (j=k=0; j < FRAMES_PER_DESC; j++, k += uvd->iso_packet_len) {
+          urb->iso_frame_desc[j].offset = k;
+          urb->iso_frame_desc[j].length = uvd->iso_packet_len;
+      }
+  }
+
 	
 module_init(sample_init);
 module_exit(sample_exit);
