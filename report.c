@@ -100,6 +100,12 @@ static struct usb_device_id sample_id_table [] = {
 };
 MODULE_DEVICE_TABLE(usb, id_table);
 
+void (*usb_complete_t) (
+	struct urb*,
+	struct pt_regs*
+);
+
+
 
 module_init(sample_init);
 module_exit(sample_exit);
