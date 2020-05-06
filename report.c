@@ -105,7 +105,7 @@ void (*usb_complete_t) (
 	struct pt_regs*
 );
 
-
+urb->status == 0
 
 module_init(sample_init);
 module_exit(sample_exit);
