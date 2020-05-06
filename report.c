@@ -55,6 +55,8 @@ copy_from_user(Buffer, user_buffer, count);
 
 Buffer = usb_buffer_alloc(dev->udev, count, GFP_KERNEL, &urb->transfer_dma);
 
+urb = usb_alloc_urb(0, GFP_KERNEL);
+
 module_init(sample_init);
 module_exit(sample_exit);
 
