@@ -57,6 +57,15 @@ Buffer = usb_buffer_alloc(dev->udev, count, GFP_KERNEL, &urb->transfer_dma);
 
 urb = usb_alloc_urb(0, GFP_KERNEL);
 
+int ret;
+ret = usb_register_dev(interface, &usb_class);
+if(ret)
+{
+	printk(“minor number not allocated\n”);
+	usb_set_interface(interface, NULL);
+}
+
+
 module_init(sample_init);
 module_exit(sample_exit);
 
