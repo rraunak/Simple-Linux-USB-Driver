@@ -53,6 +53,8 @@ usb_fill_bulk_urb(urb,dev->udev,usb_sndbulkpipe(dev->udev,dev->bulk_out_endpoint
 
 copy_from_user(Buffer, user_buffer, count);
 
+Buffer = usb_buffer_alloc(dev->udev, count, GFP_KERNEL, &urb->transfer_dma);
+
 module_init(sample_init);
 module_exit(sample_exit);
 
