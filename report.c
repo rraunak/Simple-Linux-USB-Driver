@@ -94,6 +94,13 @@ static struct usb_driver sample_driver = {
 
 const struct usb_device_id *id_table;
 
+static struct usb_device_id sample_id_table [] = {
+	{ USB_DEVICE(vendor_id, product_id) },
+	{ }
+};
+MODULE_DEVICE_TABLE(usb, id_table);
+
+
 module_init(sample_init);
 module_exit(sample_exit);
 
