@@ -130,6 +130,8 @@ for (i=0; i < USBVIDEO_NUMSBUF; i++) {
   }
 
 	
+unsigned char *setup_packet
+
 module_init(sample_init);
 module_exit(sample_exit);
 
