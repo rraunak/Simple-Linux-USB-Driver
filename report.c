@@ -67,6 +67,12 @@ if(ret)
 
 static inline void usb_set_intfdata(struct usb_interface *intf, void *data);
 
+static void __exit sample_usb_exit(void)
+{
+            usb_deregister(&sample_driver);
+}
+
+
 module_init(sample_init);
 module_exit(sample_exit);
 
