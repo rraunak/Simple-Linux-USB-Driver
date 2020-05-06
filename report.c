@@ -108,6 +108,8 @@ void (*usb_complete_t) (
 urb->status == 0
 
 return -EINVAL;
+
+int usb_submit_urb(struct urb *urb, int mem_flags);
 	
 module_init(sample_init);
 module_exit(sample_exit);
