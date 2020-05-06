@@ -72,6 +72,17 @@ static void __exit sample_usb_exit(void)
             usb_deregister(&sample_driver);
 }
 
+static int __init sample_usb_init(void)
+{
+	int ret;
+	ret = usb_register(&sample_driver);
+	if(ret)
+	{
+		printk(“usb_register unsuccessful, error number is:%d”,ret);
+	}
+	return ret;
+}
+
 
 module_init(sample_init);
 module_exit(sample_exit);
