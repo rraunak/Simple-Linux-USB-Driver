@@ -3,7 +3,7 @@
 #include <linux/usb.h>
 
 #define  Max_count  512
-#define  MIN(x,y)  (((x) <= (y)) ? (x) : (y))
+#define  MIN(x,y)  (((x) <= (y)) ? (x) : (y))   //find minimum
 #define  BULK_IN  0x02
 #define  BULK_OUT  0x81
 
