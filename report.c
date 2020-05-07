@@ -9,7 +9,7 @@
 
 static struct usb_device *usb_dev;
 static struct usb_class_driver usb_class;
-static unsigned char data[Max_size]; 
+static unsigned char data[Max_count]; 
 
 static int sample_open(struct inode *inode, struct file *file)
 {
@@ -19,15 +19,15 @@ static int sample_close(struct inode *inode, struct file *file)
 {
 	return 0;
 }
-static ssize_t sample_read(struct file *file, char __user *buf, size_t count, loff_t *offset)
+static ssize_t sample_read(struct file *file, char *buf, size_t count, loff_t *ppos)
 {
 	int ret,ret2;
 	int read_count;
 	
-	ret = usb_bulk_msg(usb_dev, usb_rcvbulkpipe(usb_dev, BULK_IN), data, Max_size, &read_count, 10000);
+	ret = usb_bulk_msg(usb_dev, usb_rcvbulkpipe(usb_dev, BULK_IN), data, Max_count, &read_count, 10000);
 	if(ret)
 	{
-		printk("Bulk message returned:%d\n, ret");
+		printk("Bulk message returned:%d\n", ret);
 		return ret;
 	}
 	ret2 = copy_to_user(buf, data, MIN(count, read_count));
@@ -37,7 +37,7 @@ static ssize_t sample_read(struct file *file, char __user *buf, size_t count, lo
 	}
 	return MIN(count, read_count);
 }
-static ssize_t sample_write(struct file *file, char __user *buf, size_t count, loff_t *offset)
+static ssize_t sample_write(struct file *file, const char *buf, size_t count, loff_t *ppos)
 {
 	int ret,ret2;
 	int write_count;
@@ -48,10 +48,10 @@ static ssize_t sample_write(struct file *file, char __user *buf, size_t count, l
 	{
 		return -EINVAL;
 	}
-	ret = usb_bulk_msg(usb_dev, usb_sndbulkpipe(usb_dev, BULK_OUT), data, MIN(count, Max_size), &write_count, 10000);
+	ret = usb_bulk_msg(usb_dev, usb_sndbulkpipe(usb_dev, BULK_OUT), data, MIN(count, Max_count), &write_count, 10000);
 	if(ret)
 	{
-		printk("Bulk message returned:%d\n, ret");
+		printk("Bulk message returned:%d\n", ret);
 		return ret;
 	}
 	return write_count;
